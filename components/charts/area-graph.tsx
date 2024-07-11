@@ -52,9 +52,14 @@ interface AreaGraphProps {
   csvPath: string;
   updateTrigger: number;
 }
+interface ChartDataPoint {
+  month: string;
+  high: number;
+  low: number;
+}
 
 export function AreaGraph({ csvPath, updateTrigger}: AreaGraphProps) {
-  const [chartData, setChartData] = useState([])
+  const [chartData, setChartData] = useState<ChartDataPoint[]>([]);
   useEffect(() => {
     // Fetch and parse CSV data
     fetch(csvPath)
