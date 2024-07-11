@@ -17,15 +17,15 @@ import {
   ChartTooltip,
   ChartTooltipContent
 } from '@/components/ui/chart';
-import csvData from '../../constants/sp500.csv';
+// import csvData from '../../constants/sp500.csv';
 
-const chartData = csvData.slice(-90).map((row) => ({
-  date: row.Date, // if the month column is named 'date'
-  // desktop: Number(row.desktopVisitors), // if it's named 'desktopVisitors'
-  // mobile: Number(row.mobileVisitors) // if it's named 'mobileVisitors'
-  high: Number(row.High),
-  low: Number(row.Low)
-}));
+// const chartData = csvData.slice(-90).map((row) => ({
+//   date: row.Date, // if the month column is named 'date'
+//   // desktop: Number(row.desktopVisitors), // if it's named 'desktopVisitors'
+//   // mobile: Number(row.mobileVisitors) // if it's named 'mobileVisitors'
+//   high: Number(row.High),
+//   low: Number(row.Low)
+// }));
 
 export const description = 'An interactive bar chart';
 

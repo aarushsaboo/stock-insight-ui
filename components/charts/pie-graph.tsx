@@ -19,7 +19,7 @@ import {
   ChartTooltip,
   ChartTooltipContent
 } from '@/components/ui/chart';
-import csvData from '../../constants/sp500.csv'
+// import csvData from '../../constants/sp500.csv'
 
 interface DataPoint {
   date: string;

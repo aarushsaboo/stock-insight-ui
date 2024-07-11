@@ -25,7 +25,7 @@ import {
 //   { month: 'May', desktop: 209, mobile: 130 },
 //   { month: 'June', desktop: 214, mobile: 140 }
 // ];
-import csvData from '../../constants/sp500.csv';
+// import csvData from '../../constants/sp500.csv';
 
 const chartConfig = {
   high: {
@@ -39,14 +39,14 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 
-const chartData = csvData.map((row) => ({
-  month: row.date, // if the month column is named 'date'
-  // desktop: Number(row.desktopVisitors), // if it's named 'desktopVisitors'
-  // mobile: Number(row.mobileVisitors) // if it's named 'mobileVisitors'
-  high: Number(row.High),
-  low: Number(row.Low)
+// const chartData = csvData.map((row) => ({
+//   month: row.date, // if the month column is named 'date'
+//   // desktop: Number(row.desktopVisitors), // if it's named 'desktopVisitors'
+//   // mobile: Number(row.mobileVisitors) // if it's named 'mobileVisitors'
+//   high: Number(row.High),
+//   low: Number(row.Low)
   
-}));
+// }));
 
 interface AreaGraphProps {
   csvPath: string;
