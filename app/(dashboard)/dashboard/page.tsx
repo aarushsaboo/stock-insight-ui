@@ -22,7 +22,7 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-export default function page() {
+export default function Page() {
   const [csvPath, setCsvPath] = useState(
     'https://stock-insight-api.onrender.com/constants/sp500.csv'
   );
