@@ -63,16 +63,16 @@ function processData(data: DataPoint[]): ProcessedDataPoint[] {
     fill: `hsl(${Math.random() * 360}, 70%, 50%)`
   }));
 }
-const chartData = processData(csvData);
+// const chartData = processData(csvData);
 
-const chartConfig = {
-  count: {
-    label: 'Count'
-  },
-  ...Object.fromEntries(
-    chartData.map(({ range, fill }) => [range, { label: range, color: fill }])
-  )
-} satisfies ChartConfig;
+// const chartConfig = {
+//   count: {
+//     label: 'Count'
+//   },
+//   ...Object.fromEntries(
+//     chartData.map(({ range, fill }) => [range, { label: range, color: fill }])
+//   )
+// } satisfies ChartConfig;
 
 interface PieGraphProps {
   csvPath: string;
@@ -120,7 +120,15 @@ export function PieGraph({ csvPath, updateTrigger }: PieGraphProps) {
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
-          config={chartConfig}
+          config={{
+            count: { label: 'Count' },
+            ...Object.fromEntries(
+              chartData.map(({ range, fill }) => [
+                range,
+                { label: range, color: fill }
+              ])
+            )
+          }}
           className="mx-auto aspect-square max-h-[360px]"
         >
           <PieChart>
