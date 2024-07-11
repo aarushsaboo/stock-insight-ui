@@ -48,8 +48,13 @@ interface BarGraphProps {
   csvPath: string;
   updateTrigger: number;
 }
+interface ChartDataPoint {
+  date: string;
+  high: number;
+  low: number;
+}
 export function BarGraph({ csvPath, updateTrigger }: BarGraphProps) {
-  const [chartData, setChartData] = useState([]);
+  const [chartData, setChartData] = useState<ChartDataPoint[]>([]);
   const [activeChart, setActiveChart] =
     React.useState<keyof typeof chartConfig>('high');
 
