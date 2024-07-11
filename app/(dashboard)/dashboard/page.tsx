@@ -24,7 +24,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function page() {
   const [csvPath, setCsvPath] = useState(
-    'http://localhost:5000/constants/sp500.csv'
+    'https://stock-insight-api.onrender.com/constants/sp500.csv'
   );
   const [updateTrigger, setUpdateTrigger] = useState(0);
 
@@ -32,7 +32,7 @@ export default function page() {
   const handleStockSubmit = async (symbol: string) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/stock?symbol=${symbol}`
+        `https://stock-insight-api.onrender.com/api/stock?symbol=${symbol}`
       );
       const data = await response.json();
       if (data.success) {
