@@ -32,7 +32,11 @@ export default function Page() {
   const handleStockSubmit = async (symbol: string) => {
     try {
       const response = await fetch(
-        `https://stock-insight-api.onrender.com/api/stock?symbol=${symbol}`
+        `https://stock-insight-api.onrender.com/api/stock?symbol=${symbol}`,
+        {
+          method: 'GET',
+          credentials: 'include'
+        }
       );
       const data = await response.json();
       if (data.success) {
