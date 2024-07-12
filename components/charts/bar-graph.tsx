@@ -84,7 +84,7 @@ export function BarGraph({ csvPath, updateTrigger }: BarGraphProps) {
       .catch((error) => {
         console.error('Error fetching csv', error);
       });
-  }, [updateTrigger]);
+  }, [updateTrigger, csvPath]);
 
   const total = React.useMemo(
     () => ({

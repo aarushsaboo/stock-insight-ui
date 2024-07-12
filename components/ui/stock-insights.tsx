@@ -92,7 +92,7 @@ export function StockInsights({ csvPath, updateTrigger }: StockInsightProps) {
         .catch((error) => {
           console.error('Error fetching csv', error);
         });
-    }, [updateTrigger]);
+    }, [updateTrigger, csvPath]);
 
     if (!insights) return <div>Loading...</div>;
 

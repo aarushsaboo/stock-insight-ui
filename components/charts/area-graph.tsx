@@ -86,7 +86,7 @@ export function AreaGraph({ csvPath, updateTrigger}: AreaGraphProps) {
       .catch(error => {
         console.error('Error fetching csv', error)
       });
-  }, [updateTrigger]);
+  }, [updateTrigger, csvPath]);
   
   return (
     <Card>

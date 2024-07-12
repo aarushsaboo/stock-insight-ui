@@ -105,7 +105,7 @@ export function StockInfo({ csvPath, updateTrigger }: StockInfoProps) {
         .catch((error) => {
           console.error('Error fetching csv', error);
         });
-    }, [updateTrigger]);
+    }, [updateTrigger, csvPath]);
 
     if (!info) return <div>Loading...</div>;
     return (
