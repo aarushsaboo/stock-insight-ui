@@ -11,7 +11,24 @@ interface StockInfoProps {
     csvPath: string;
     updateTrigger: number;
 }
-function calculateInfo(data) {
+interface StockData {
+  date: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+}
+
+interface StockInfo {
+  monthlyTrend: string;
+  highestDay: string;
+  lowestDay: string;
+  consecutiveUp: number;
+  consecutiveDown: number;
+  lastClose: string;
+  firstOpen: number;
+}
+function calculateInfo(data: StockData[]): StockInfo {
   const sortedData = data.sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   );
@@ -27,15 +44,21 @@ function calculateInfo(data) {
     day.low < min.low ? day : min
   );
 
-  const consecutiveUp = lastMonth.reduce((count, day, index, arr) => {
-    if (index === 0) return 0;
-    return day.close > arr[index - 1].close ? count + 1 : 0;
-  }, 0);
+  const consecutiveUp = lastMonth.reduce(
+    (count: number, day: StockData, index: number, arr: StockData[]) => {
+      if (index === 0) return 0;
+      return day.close > arr[index - 1].close ? count + 1 : 0;
+    },
+    0
+  );
 
-  const consecutiveDown = lastMonth.reduce((count, day, index, arr) => {
-    if (index === 0) return 0;
-    return day.close < arr[index - 1].close ? count + 1 : 0;
-  }, 0);
+  const consecutiveDown = lastMonth.reduce(
+    (count: number, day: StockData, index: number, arr: StockData[]) => {
+      if (index === 0) return 0;
+      return day.close < arr[index - 1].close ? count + 1 : 0;
+    },
+    0
+  );
 
   return {
     monthlyTrend: monthlyTrend.toFixed(2),
@@ -43,11 +66,12 @@ function calculateInfo(data) {
     lowestDay: lowestDay.date,
     consecutiveUp,
     consecutiveDown,
-    lastClose: lastDay.close.toFixed(2)
+    lastClose: lastDay.close.toFixed(2),
+    firstOpen: firstDay.open
   };
 }
 export function StockInfo({ csvPath, updateTrigger }: StockInfoProps) {
-    const [info, setInfo] = useState(null);
+    const [info, setInfo] = useState<StockInfo | null>(null);
 
     useEffect(() => {
       // Fetch and parse CSV data
@@ -62,7 +86,7 @@ export function StockInfo({ csvPath, updateTrigger }: StockInfoProps) {
           console.log('CSV data fetched successfully');
           const rows = text.split('\n').slice(1); // Skip header
           // console.log("This is the text",text)
-          const data = rows.map((row) => {
+          const data: StockData[] = rows.map((row) => {
             const [date, open, high, low, close] = row.split(',');
             return {
               date,
@@ -152,7 +176,7 @@ export function StockInfo({ csvPath, updateTrigger }: StockInfoProps) {
                 The most recent closing price was{' '}
                 <span style={{ fontWeight: 'bold' }}>${info.lastClose}</span>.
                 <span style={{ fontStyle: 'italic' }}>
-                  {info.lastClose > info.firstOpen
+                  {Number(info.lastClose) > info.firstOpen
                     ? ' This is higher than the opening price at the start of the month, suggesting overall positive performance.'
                     : ' This is lower than the opening price at the start of the month, indicating some loss in value over the period.'}
                 </span>
