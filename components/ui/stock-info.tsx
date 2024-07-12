@@ -122,17 +122,17 @@ export function StockInfo({ csvPath, updateTrigger }: StockInfoProps) {
                 <span
                   style={{
                     fontWeight: 'bold',
-                    color: info.monthlyTrend > 0 ? '#4CAF50' : '#F44336'
+                    color: Number(info.monthlyTrend) > 0 ? '#4CAF50' : '#F44336'
                   }}
                 >
-                  {info.monthlyTrend > 0 ? 'positive' : 'negative'} trend of{' '}
-                  {Math.abs(info.monthlyTrend)}%
+                  {Number(info.monthlyTrend) > 0 ? 'positive' : 'negative'} trend of{' '}
+                  {Math.abs(Number(info.monthlyTrend))}%
                 </span>
                 .
                 <span style={{ fontStyle: 'italic' }}>
-                  {info.monthlyTrend > 5
+                  {Number(info.monthlyTrend) > 5
                     ? ' This indicates strong bullish sentiment.'
-                    : info.monthlyTrend < -5
+                    : Number(info.monthlyTrend) < -5
                     ? ' This suggests significant bearish pressure.'
                     : ' The stock appears to be relatively stable.'}
                 </span>
